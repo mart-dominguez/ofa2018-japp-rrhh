@@ -20,7 +20,10 @@ import utn.frsf.ofa.cursojava.lab04.Empleado;
  */
 public class EmpleadoDaoJDBC implements EmpleadoDao {
     
-    private final String INSERT_EMPLEADO = "INSERT INTO EMPLEADOS (NOMBRE, CORREO, CUIL, FECHA_INGRESO, HS_TRABAJADAS, SUELDO_BASICO, COMISIONES, HS_MINIMAS, COSTO_HORA, TIPO_EMPLEADO) VALUES (?,?,?,?,?,?,?,?,?,?)";
+    private final String INSERT_EMPLEADO = "INSERT INTO EMPLEADOS (NOMBRE, CORREO, CUIL, "
+            + "FECHA_INGRESO, HS_TRABAJADAS, SUELDO_BASICO, "
+            + "COMISIONES, HS_MINIMAS, COSTO_HORA, TIPO_EMPLEADO) "
+            + "VALUES (?,?,?,?,?,?,?,?,?,?)";
     
     @Override
     public void crear(Empleado e) {
