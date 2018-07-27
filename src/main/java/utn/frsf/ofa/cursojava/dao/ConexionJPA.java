@@ -14,7 +14,7 @@ public class ConexionJPA {
     
     private static void inicializar(){
         if(_entityManagerFactory==null)
-        _entityManagerFactory = Persistence.createEntityManagerFactory("taller");
+        _entityManagerFactory = Persistence.createEntityManagerFactory("app-rrhh-PU");
     }
  
     public static EntityManager get(){

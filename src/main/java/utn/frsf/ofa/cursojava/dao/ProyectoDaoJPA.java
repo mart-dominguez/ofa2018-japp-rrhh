@@ -5,6 +5,7 @@
  */
 package utn.frsf.ofa.cursojava.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import utn.frsf.ofa.cursojava.lab04.Proyecto;
@@ -13,20 +14,20 @@ import utn.frsf.ofa.cursojava.lab04.Proyecto;
  *
  * @author marti
  */
-public class ProyectoJPA implements ProyectoDao{
+public class ProyectoDaoJPA implements ProyectoDao{
 
     private EntityManager em; 
-    public ProyectoJPA(){
-        this.em = ConexionJPA.get();
-    }
+
     
     @Override
     public void crear(Proyecto e) {
+        this.em = ConexionJPA.get();
         try {
             em.getTransaction().begin();
             em.persist(e);
             em.getTransaction().commit();
         } catch (Exception ex) {
+            
             ex.printStackTrace();
             em.getTransaction().rollback();
         } finally {
@@ -51,7 +52,19 @@ public class ProyectoJPA implements ProyectoDao{
 
     @Override
     public List<Proyecto> buscarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.em = ConexionJPA.get();
+        List<Proyecto> resultado= new ArrayList<Proyecto>();
+         try {
+            em.getTransaction().begin();
+            resultado = this.em.createQuery("SELECT p FROM Proyecto p").getResultList();
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+         return resultado;
     }
     
 }
