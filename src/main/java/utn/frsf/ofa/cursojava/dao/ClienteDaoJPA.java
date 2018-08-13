@@ -8,77 +8,78 @@ package utn.frsf.ofa.cursojava.dao;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import utn.frsf.ofa.cursojava.lab04.Cliente;
 import utn.frsf.ofa.cursojava.lab04.Proyecto;
 
 /**
  *
- * @author marti
+ * @author mdominguez
  */
-public class ProyectoDaoJPA implements ProyectoDao {
-    
-    private EntityManager em;    
-    
+public class ClienteDaoJPA implements ClienteDao {
+
+    private EntityManager em;
+
     @Override
-    public void crear(Proyecto e) {
+    public void crear(Cliente e) {
         this.em = ConexionJPA.get();
         try {
             em.getTransaction().begin();
             em.persist(e);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            
+
             ex.printStackTrace();
             em.getTransaction().rollback();
         } finally {
             em.close();
         }
     }
-    
+
     @Override
-    public void actualizar(Proyecto e) {
+    public void actualizar(Cliente e) {
         this.em = ConexionJPA.get();
         try {
             em.getTransaction().begin();
             em.merge(e);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            
+
             ex.printStackTrace();
             em.getTransaction().rollback();
         } finally {
             em.close();
         }
     }
-    
+
     @Override
-    public void eliminar(Proyecto e) {
+    public void eliminar(Cliente e) {
         this.em = ConexionJPA.get();
         try {
             em.getTransaction().begin();
-            Proyecto p = em.find(Proyecto.class, e.getId());
+            Cliente p = em.find(Cliente.class, e.getId());
             em.remove(p);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            
+
             ex.printStackTrace();
             em.getTransaction().rollback();
         } finally {
             em.close();
         }
     }
-    
+
     @Override
-    public Proyecto buscarPorId(Integer id) {
-        return em.find(Proyecto.class, id);
+    public Cliente buscarPorId(Integer id) {
+        return em.find(Cliente.class, id);
     }
-    
+
     @Override
-    public List<Proyecto> buscarTodos() {
+    public List<Cliente> buscarTodos() {
         this.em = ConexionJPA.get();
-        List<Proyecto> resultado = new ArrayList<Proyecto>();
+        List<Cliente> resultado = new ArrayList<Cliente>();
         try {
             em.getTransaction().begin();
-            resultado = this.em.createQuery("SELECT p FROM Proyecto p").getResultList();
+            resultado = this.em.createQuery("SELECT p FROM Cliente p").getResultList();
             em.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -88,5 +89,5 @@ public class ProyectoDaoJPA implements ProyectoDao {
         }
         return resultado;
     }
-    
+
 }

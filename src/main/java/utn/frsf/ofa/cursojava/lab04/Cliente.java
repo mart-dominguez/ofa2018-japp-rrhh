@@ -5,22 +5,30 @@
  */
 package utn.frsf.ofa.cursojava.lab04;
 
+import java.util.List;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author marti
  */
+@Entity 
 public class Cliente {
-        @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
     private String correo;
     private String cuit;
 
+    @OneToMany(mappedBy = "cliente")
+    private List<Proyecto> proyectos;
+    
     public Integer getId() {
         return id;
     }

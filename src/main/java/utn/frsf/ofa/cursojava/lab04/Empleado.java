@@ -6,6 +6,8 @@
 package utn.frsf.ofa.cursojava.lab04;
 
 import java.util.Date;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +21,7 @@ import javax.persistence.InheritanceType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.INTEGER, name = "TIPO_EMPLEADO" )
 public abstract class Empleado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
