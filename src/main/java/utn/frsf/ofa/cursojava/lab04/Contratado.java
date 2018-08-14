@@ -7,11 +7,13 @@ package utn.frsf.ofa.cursojava.lab04;
 
 import java.util.Date;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 /**
  *
  * @author mdominguez
  */
+@Entity
 @DiscriminatorValue(value = "1")
 public class Contratado extends Empleado{
     private Double costoHora;

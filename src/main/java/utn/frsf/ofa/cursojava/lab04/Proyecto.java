@@ -6,12 +6,15 @@
 package utn.frsf.ofa.cursojava.lab04;
 
 import java.util.Date;
+import java.util.List;
 import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 /**
@@ -31,6 +34,13 @@ public class Proyecto {
     @JoinColumn(name = "ID_CLIENTE")
     private Cliente cliente;
 
+    @ManyToMany
+    @JoinTable(name = "PROYECTO_EMPLEAOD",
+            joinColumns = @JoinColumn(name = "ID_PROYECTO"),
+            inverseJoinColumns = @JoinColumn(name = "ID_EMPLEADO")
+    )
+    private List<Empleado> empleados;
+    
     public Integer getId() {
         return id;
     }
@@ -69,6 +79,19 @@ public class Proyecto {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public List<Empleado> getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(List<Empleado> empleados) {
+        this.empleados = empleados;
+    }
+
+    @Override
+    public String toString() {
+        return "Proyecto{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", presupuestoMaximo=" + presupuestoMaximo + ", cliente=" + cliente + ", empleados=" + empleados + '}';
     }
 
     

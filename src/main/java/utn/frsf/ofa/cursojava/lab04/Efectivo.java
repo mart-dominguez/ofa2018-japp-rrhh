@@ -8,11 +8,13 @@ package utn.frsf.ofa.cursojava.lab04;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 /**
  *
  * @author mdominguez
  */
+@Entity
 @DiscriminatorValue(value = "2")
 public class Efectivo extends Empleado{
 

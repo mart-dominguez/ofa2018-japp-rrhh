@@ -6,6 +6,7 @@
 package utn.frsf.ofa.cursojava.lab04;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
@@ -14,6 +15,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -31,6 +35,9 @@ public abstract class Empleado {
     protected String cuil;
     protected Date fechaIngreso;
     protected Integer horasTrabajadas;
+    
+    @ManyToMany(mappedBy = "empleados")
+    protected List<Proyecto> proyectosAsignados;
 
     public abstract Double salario();
     public abstract Boolean esContratado();
@@ -83,6 +90,19 @@ public abstract class Empleado {
 
     public void setHorasTrabajadas(Integer horasTrabajadas) {
         this.horasTrabajadas = horasTrabajadas;
+    }
+
+    public List<Proyecto> getProyectosAsignados() {
+        return proyectosAsignados;
+    }
+
+    public void setProyectosAsignados(List<Proyecto> proyectosAsignados) {
+        this.proyectosAsignados = proyectosAsignados;
+    }
+
+    @Override
+    public String toString() {
+        return "Empleado{" + "id=" + id + ", nombre=" + nombre + ", correoElectronico=" + correoElectronico + ", cuil=" + cuil + ", fechaIngreso=" + fechaIngreso + ", horasTrabajadas=" + horasTrabajadas +  '}';
     }
         
     
