@@ -25,21 +25,21 @@ import javax.persistence.ManyToOne;
 public class Proyecto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String nombre;
-    private String descripcion;
-    private Double presupuestoMaximo;
+    protected Integer id;
+    protected String nombre;
+    protected String descripcion;
+    protected Double presupuestoMaximo;
     
     @ManyToOne
     @JoinColumn(name = "ID_CLIENTE")
-    private Cliente cliente;
+    protected Cliente cliente;
 
     @ManyToMany
-    @JoinTable(name = "PROYECTO_EMPLEAOD",
+    @JoinTable(name = "PROYECTO_EMPLEADO",
             joinColumns = @JoinColumn(name = "ID_PROYECTO"),
             inverseJoinColumns = @JoinColumn(name = "ID_EMPLEADO")
     )
-    private List<Empleado> empleados;
+    protected List<Empleado> empleados;
     
     public Integer getId() {
         return id;
